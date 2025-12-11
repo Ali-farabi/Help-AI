@@ -51,7 +51,7 @@ export default {
   		},
   		fontFamily: {
   			clash: [
-  				'Clash Display"',
+  				'Clash Display',
   				'Manrope',
   				'ui-sans-serif',
   				'system-ui'
