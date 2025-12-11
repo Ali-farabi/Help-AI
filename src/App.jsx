@@ -22,12 +22,29 @@ const App = () => {
       <NavBar />
 
       <main className="relative z-10 mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-6 lg:px-8">
-        <Home />
-        <Dashboard />
-        <Webinar />
-        <VideoWebinar />
-        <WebinarsPage />
-        <About />
+        <section id="home">
+          <Home />
+        </section>
+        
+        <section id="dashboard">
+          <Dashboard />
+        </section>
+        
+        <section id="webinar">
+          <Webinar />
+        </section>
+        
+        <section id="video-webinar">
+          <VideoWebinar />
+        </section>
+        
+        <section id="webinars-page">
+          <WebinarsPage />
+        </section>
+        
+        <section id="team">
+          <About />
+        </section>
       </main>
 
       <Footer />
