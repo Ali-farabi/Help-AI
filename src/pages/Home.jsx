@@ -26,11 +26,11 @@ const examSolutions = [
     id: 1,
     title: 'IELTS Preparation',
     emoji: '',
-    desc: 'Комплексная подготовка к экзамену IELTS с AI-поддержкой',
+    desc: 'Comprehensive IELTS exam preparation with AI support',
     curator: {
       name: 'Dr. Sarah Mitchell',
-      experience: '12 лет опыта',
-      students: '2,500+ студентов',
+      experience: '12 years experience',
+      students: '2,500+ students',
       avatar: 'SM'
     },
     books: [
@@ -49,11 +49,11 @@ const examSolutions = [
     id: 2,
     title: 'TOEFL Mastery',
     emoji: '',
-    desc: 'Эффективная подготовка к TOEFL с персональным планом',
+    desc: 'Effective TOEFL preparation with personalized plan',
     curator: {
       name: 'Prof. Michael Chen',
-      experience: '15 лет опыта',
-      students: '3,200+ студентов',
+      experience: '15 years experience',
+      students: '3,200+ students',
       avatar: 'MC'
     },
     books: [
@@ -72,11 +72,11 @@ const examSolutions = [
     id: 3,
     title: 'SAT Excellence',
     emoji: '',
-    desc: 'Полная подготовка к SAT для высоких баллов',
+    desc: 'Complete SAT preparation for high scores',
     curator: {
       name: 'Emma Johnson',
-      experience: '10 лет опыта',
-      students: '1,800+ студентов',
+      experience: '10 years experience',
+      students: '1,800+ students',
       avatar: 'EJ'
     },
     books: [
@@ -93,47 +93,47 @@ const examSolutions = [
   },
   {
     id: 4,
-    title: 'ЕНТ Подготовка',
+    title: 'UNT Preparation',
     emoji: '',
-    desc: 'Специализированная подготовка к Единому Национальному Тестированию',
+    desc: 'Specialized preparation for Unified National Testing',
     curator: {
-      name: 'Айгүл Нұрланова',
-      experience: '8 лет опыта',
-      students: '2,100+ студентов',
-      avatar: 'АН'
+      name: 'Aigul Nurlanova',
+      experience: '8 years experience',
+      students: '2,100+ students',
+      avatar: 'AN'
     },
     books: [
-      { title: 'ЕНТ Математика - Полный курс', author: 'Образовательный центр', pages: 520 },
-      { title: 'История Казахстана для ЕНТ', author: 'Республиканское издательство', pages: 380 },
-      { title: 'ЕНТ Биология и Химия', author: 'Научный центр', pages: 440 },
+      { title: 'UNT Mathematics - Complete Course', author: 'Education Center', pages: 520 },
+      { title: 'History of Kazakhstan for UNT', author: 'Republic Publishing', pages: 380 },
+      { title: 'UNT Biology and Chemistry', author: 'Science Center', pages: 440 },
     ],
     videos: [
-      { title: 'Математика - Решение сложных задач', duration: '35:20', views: 28400 },
-      { title: 'История Казахстана - Ключевые даты', duration: '29:15', views: 21600 },
-      { title: 'Стратегии сдачи ЕНТ', duration: '22:40', views: 25800 },
-      { title: 'Типичные ошибки и как их избежать', duration: '26:30', views: 19700 },
+      { title: 'Mathematics - Solving Complex Problems', duration: '35:20', views: 28400 },
+      { title: 'History of Kazakhstan - Key Dates', duration: '29:15', views: 21600 },
+      { title: 'UNT Passing Strategies', duration: '22:40', views: 25800 },
+      { title: 'Common Mistakes and How to Avoid Them', duration: '26:30', views: 19700 },
     ],
   },
 ]
 
 const difficulties = [
-  { value: '1,2 млн', label: 'оқушы — оқу сауаттылығында қиындық' },
-  { value: '1 млн', label: 'бала — математикада базалық деңгейге жете алмайды' },
-  { value: '700 мың', label: 'ауыл оқушысы — сапасыз инфрақұрылымда' },
-  { value: '20 мың+', label: 'мұғалім жетіспейді' },
-  { value: '300 мың', label: 'жасөспірім — созылмалы стресс, күйзеліс' },
+  { value: '1.2M', label: 'students struggle with reading literacy' },
+  { value: '1M', label: 'children cannot reach basic level in mathematics' },
+  { value: '700K', label: 'rural students with poor infrastructure' },
+  { value: '20K+', label: 'teacher shortage' },
+  { value: '300K', label: 'teenagers with chronic stress and anxiety' },
 ]
 
 const solutions = [
-  { title: 'AI ChatBot', desc: '24/7 көмек: түсіндіру, мысал, практика және кері байланыс.' },
-  { title: 'Video courses', desc: 'Жылдам модульдер, қазақ/орыс интерфейс, қысқа тесттер.' },
-  { title: 'Teacher vacancy platform', desc: 'Мұғалімдерді тапшылығы бар мектептермен жылдам табыстыру.' },
-  { title: 'Learning assistant', desc: 'Дара жоспар, фокус-таймер, күнделікті нотификация.' },
+  { title: 'AI ChatBot', desc: '24/7 help: explanations, examples, practice and feedback.' },
+  { title: 'UNT Course', desc: 'Complete preparation, tests, detailed analysis.' },
+  { title: 'Math Course', desc: 'School curriculum, algebra, geometry.' },
+  { title: 'Computer Science', desc: 'Programming, algorithms, logic development.' },
 ]
 
 const prototypes = Array.from({ length: 4 }).map((_, i) => ({
   id: i,
-  label: 'Прототип',
+  label: 'Prototype',
 }))
 
 const team = [
@@ -181,15 +181,15 @@ const ExamModal = ({ exam, isOpen, onClose }) => {
               {exam.curator.avatar}
             </div>
             <div className="flex-1">
-              <p className="text-sm text-slate-400 mb-1">Ваш куратор</p>
+              <p className="text-sm text-slate-400 mb-1">Your Curator</p>
               <p className="text-xl font-bold text-white">{exam.curator.name}</p>
               <div className="flex gap-4 mt-2 text-sm text-slate-300">
-                <span>📚 {exam.curator.experience}</span>
-                <span>👥 {exam.curator.students}</span>
+                <span> {exam.curator.experience}</span>
+                <span> {exam.curator.students}</span>
               </div>
             </div>
             <button className="rounded-2xl bg-gradient-to-r from-purple-600 to-orange-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-all hover:scale-105">
-              Связаться
+              Contact
             </button>
           </div>
         </div>
@@ -198,7 +198,7 @@ const ExamModal = ({ exam, isOpen, onClose }) => {
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="text-2xl"></span>
-              Учебные материалы
+              Study Materials
             </h3>
             <div className="space-y-3">
               {exam.books.map((book, idx) => (
@@ -209,9 +209,9 @@ const ExamModal = ({ exam, isOpen, onClose }) => {
                   <p className="font-bold text-white">{book.title}</p>
                   <p className="text-sm text-slate-400 mt-1">{book.author}</p>
                   <div className="flex items-center justify-between mt-2">
-                    <p className="text-xs text-slate-500">{book.pages} страниц</p>
+                    <p className="text-xs text-slate-500">{book.pages} pages</p>
                     <button className="text-xs font-bold text-purple-400 hover:text-orange-400 transition-colors">
-                      Скачать PDF
+                      Download PDF
                     </button>
                   </div>
                 </div>
@@ -222,7 +222,7 @@ const ExamModal = ({ exam, isOpen, onClose }) => {
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span className="text-2xl"></span>
-              Видео уроки
+              Video Lessons
             </h3>
             <div className="space-y-3">
               {exam.videos.map((video, idx) => (
@@ -238,7 +238,7 @@ const ExamModal = ({ exam, isOpen, onClose }) => {
                           ⏱ {video.duration}
                         </span>
                         <span className="flex items-center gap-1">
-                          👁 {video.views.toLocaleString()} просмотров
+                          {video.views.toLocaleString()} views
                         </span>
                       </div>
                     </div>
@@ -254,7 +254,7 @@ const ExamModal = ({ exam, isOpen, onClose }) => {
 
         <div className="mt-6 rounded-2xl border border-emerald-300/30 bg-emerald-300/10 p-4">
           <p className="text-sm text-emerald-100">
-             <strong>Совет:</strong> Начните с просмотра видео уроков, затем изучите материалы из книг для углубленного понимания темы.
+            💡 <strong>Tip:</strong> Start by watching video lessons, then study materials from books for deeper understanding of the topic.
           </p>
         </div>
       </div>
@@ -276,7 +276,7 @@ const Home = () => {
     setSelectedExam(null)
   }
 
-  const prototypeIcons = []
+  const prototypeIcons = ['', '', '', '']
   const prototypeLabels = ['AI Chat', 'Video Courses', 'Tests', 'Analytics']
 
   return (
@@ -370,10 +370,10 @@ const Home = () => {
 
         <section id="difficulties" className="mt-16">
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-semibold text-rose-200">Қиындықтар</p>
-            <h2 className="text-3xl font-semibold text-white sm:text-4xl">Деректер сөйлейді</h2>
+            <p className="text-sm font-semibold text-rose-200">Challenges</p>
+            <h2 className="text-3xl font-semibold text-white sm:text-4xl">The data speaks</h2>
             <p className="max-w-3xl text-sm text-slate-400">
-              Оқу сапасы, мұғалім тапшылығы және психологиялық қысым — HelpAI осыны шешуге бағытталған.
+              Education quality, teacher shortage, and psychological pressure — HelpAI is designed to solve this.
             </p>
           </div>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -393,8 +393,11 @@ const Home = () => {
           <div className="flex flex-col gap-2 text-center">
             <p className="text-sm font-semibold text-emerald-200">Our Solution ✨</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Built for real classrooms 
+              From school to university
             </h2>
+            <p className="max-w-3xl mx-auto text-sm text-slate-300 mt-2">
+              Complete educational platform for students and learners
+            </p>
           </div>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -427,20 +430,17 @@ const Home = () => {
                 </div>
 
                 <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
-                  <span> {exam.books.length} книг</span>
+                  <span> {exam.books.length} books</span>
                   <span>•</span>
-                  <span> {exam.videos.length} видео</span>
+                  <span> {exam.videos.length} videos</span>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    {/* <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-600 to-orange-600 text-xs font-bold text-white">
-                      {exam.curator.avatar}
-                    </div> */}
-                    <span className="text-xs flex text-slate-400">Куратор</span>
+                    <span className="text-xs flex text-slate-400">Curator</span>
                   </div>
                   <span className="text-xs font-bold text-purple-400 group-hover:text-orange-400 transition-colors">
-                    Открыть →
+                    Open →
                   </span>
                 </div>
 

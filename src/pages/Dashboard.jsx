@@ -91,7 +91,7 @@ const CourseModal = ({ course, isOpen, onClose }) => {
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <h3 className="text-xl font-bold text-white font-clash mb-4 flex items-center gap-2">
-              <span className="text-2xl">📚</span>
+              <span className="text-2xl"></span>
               Книги
             </h3>
             <div className="space-y-3">
@@ -110,7 +110,7 @@ const CourseModal = ({ course, isOpen, onClose }) => {
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <h3 className="text-xl font-bold text-white font-clash mb-4 flex items-center gap-2">
-              <span className="text-2xl">🎥</span>
+              <span className="text-2xl"></span>
               Видео
             </h3>
             <div className="space-y-3">
@@ -140,22 +140,12 @@ const CourseModal = ({ course, isOpen, onClose }) => {
     </div>
   )
 }
-const handleStartFocus = () => {
-  if (isTimerRunning) {
-    setIsTimerRunning(false)
-    setTimeLeft(25 * 60) 
-    setNotification('⏸ Focus session stopped and reset')
-  } else {
-    setIsTimerRunning(true)
-    setNotification('▶ Focus session started! Stay focused!')
-  }
-  setTimeout(() => setNotification(null), 3000)
-}
+
 const Dashboard = () => {
   const [selectedCourse, setSelectedCourse] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isTimerRunning, setIsTimerRunning] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(25 * 60) 
+  const [timeLeft, setTimeLeft] = useState(25 * 60)
   const [notification, setNotification] = useState(null)
   const [aiMessage, setAiMessage] = useState('')
   const [messages, setMessages] = useState([
@@ -180,7 +170,7 @@ const Dashboard = () => {
         setTimeLeft((prev) => {
           if (prev <= 1) {
             setIsTimerRunning(false)
-            setNotification('Focus session completed! Great job!')
+            setNotification(' Focus session completed! Great job!')
             setTimeout(() => setNotification(null), 5000)
             return 0
           }
@@ -211,10 +201,11 @@ const Dashboard = () => {
   const handleStartFocus = () => {
     if (isTimerRunning) {
       setIsTimerRunning(false)
-      setNotification('⏸ Focus session paused')
+      setTimeLeft(25 * 60)
+      setNotification(' Focus session stopped and reset')
     } else {
       setIsTimerRunning(true)
-      setNotification('▶ Focus session started! Stay focused!')
+      setNotification(' Focus session started! Stay focused!')
     }
     setTimeout(() => setNotification(null), 3000)
   }
@@ -238,28 +229,41 @@ const Dashboard = () => {
     }
 
     const aiResponses = [
-      [
-        'Great question! Let me help you with that.',
-        'Here are the key points you need to know.',
-        'I recommend reviewing the materials in section 3.',
-      ],
-      [
-        'Based on your progress, here is what I suggest:',
-        'Focus on completing the current module first.',
-        'Then move on to the practice exercises.',
-      ],
-      [
-        'Excellent! You are making good progress.',
-        'Continue with the next lesson when ready.',
-        'Remember to take breaks between sessions.',
-      ],
+      {
+        question: "If f(x) = 3x² - 5x + 2, find f'(x) and determine the critical points.",
+        answer: "f'(x) = 6x - 5. Critical point: x = 5/6. At this point, f(5/6) = -1/12.",
+        difficulty: "Hard",
+        topic: "Calculus"
+      },
+      {
+        question: "Solve the system: 2x + 3y = 12 and 4x - y = 5",
+        answer: "x = 27/14 ≈ 1.93, y = 34/14 ≈ 2.43. Use substitution or elimination method.",
+        difficulty: "Medium",
+        topic: "Algebra"
+      },
+      {
+        question: "Find the area under y = x³ from x = 0 to x = 2",
+        answer: "∫₀² x³ dx = [x⁴/4]₀² = 16/4 - 0 = 4 square units",
+        difficulty: "Hard",
+        topic: "Integration"
+      },
+      {
+        question: "If log₂(x) + log₂(x-6) = 4, solve for x",
+        answer: "log₂[x(x-6)] = 4 → x² - 6x = 16 → x² - 6x - 16 = 0 → x = 8 (x = -2 rejected)",
+        difficulty: "Medium",
+        topic: "Logarithms"
+      }
     ]
 
     const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)]
 
-    setMessages([...messages, newUserMessage, { type: 'ai', text: randomResponse }])
+    const newAiMessage = {
+      type: 'ai',
+      content: randomResponse
+    }
+
+    setMessages([...messages, newUserMessage, newAiMessage])
     setAiMessage('')
-    setNotification('✅ Message sent!')
     setTimeout(() => setNotification(null), 2000)
   }
 
@@ -274,7 +278,7 @@ const Dashboard = () => {
   }
 
   return (
-    <section id="dashboard" className="mt-20">
+    <section id="dashboard" className="min-h-screen bg-[#1a1a1a] p-8">
       {notification && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-pulse">
           <div className="rounded-2xl bg-gradient-to-r from-[#6C5BD4] to-[#FF6000] px-6 py-3 shadow-xl shadow-[#6C5BD4]/40">
@@ -285,7 +289,7 @@ const Dashboard = () => {
 
       <div className="flex flex-col gap-2">
         <p className="text-sm font-medium text-cyan-300">Dashboard</p>
-        <h2 className="text-3xl font-semibold text-white sm:text-4xl">Hi, Ali</h2>
+        <h2 className="text-3xl font-semibold text-white sm:text-4xl">Hi, User</h2>
         <p className="max-w-3xl text-sm text-slate-400">
           Here&apos;s your focus plan for today. Keep the streak alive, check in with the AI helper,
           and jump back into your courses.
@@ -294,11 +298,11 @@ const Dashboard = () => {
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col gap-6">
-          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-[#6C5BD4]/10 to-[#FF6000]/5 p-8 shadow-2xl shadow-[#6C5BD4]/20 hover-lift">
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-[#6C5BD4]/10 to-[#FF6000]/5 p-8 shadow-2xl shadow-[#6C5BD4]/20 hover:shadow-[#6C5BD4]/30 transition-all duration-300">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-sm text-slate-400 font-medium">Next focus block</p>
-                <p className={`text-5xl font-bold font-clash mt-1 ${isTimerRunning ? 'text-[#FF6000] animate-pulse' : 'text-white'}`}>
+                <p className={`text-5xl font-bold mt-1 ${isTimerRunning ? 'text-[#FF6000] animate-pulse' : 'text-white'}`}>
                   {formatTime(timeLeft)}
                 </p>
               </div>
@@ -328,14 +332,14 @@ const Dashboard = () => {
                 onClick={handleNudge}
                 className="rounded-2xl border-2 border-[#FF6000]/60 bg-[#FF6000]/15 px-5 py-2.5 text-sm font-bold text-[#FF6000] transition-all duration-300 hover:border-[#FF6000] hover:text-white hover:scale-105"
               >
-                 Nudge me
+                Nudge me
               </button>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-[#6C5BD4]/10 hover-lift">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-[#6C5BD4]/10 hover:shadow-[#6C5BD4]/20 transition-all duration-300">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-white font-clash">My courses</h3>
+              <h3 className="text-lg font-bold text-white">My courses</h3>
               <button className="text-xs font-bold text-[#6C5BD4] transition-colors hover:text-[#FF6000]">View all</button>
             </div>
             <div className="mt-6 space-y-4">
@@ -351,7 +355,7 @@ const Dashboard = () => {
                   </div>
                   <div className="mt-4 h-2.5 rounded-full bg-white/10 overflow-hidden">
                     <div
-                      className={`h-full rounded-full bg-gradient-to-r from-[#6C5BD4] to-[#FF6000] transition-all duration-500`}
+                      className="h-full rounded-full bg-gradient-to-r from-[#6C5BD4] to-[#FF6000] transition-all duration-500"
                       style={{ width: `${course.progress}%` }}
                     />
                   </div>
@@ -362,11 +366,11 @@ const Dashboard = () => {
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-[#6C5BD4]/10 hover-lift">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-[#6C5BD4]/10 hover:shadow-[#6C5BD4]/20 transition-all duration-300">
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-sm text-slate-400 font-medium">AI helper</p>
-                <h3 className="text-xl font-bold text-white font-clash mt-1">Need a quick summary?</h3>
+                <h3 className="text-xl font-bold text-white mt-1">Need a quick summary?</h3>
               </div>
               <span className="rounded-2xl bg-gradient-to-br from-[#6C5BD4] to-[#FF6000] px-4 py-1.5 text-xs font-bold text-white shadow-lg shadow-[#6C5BD4]/30">
                 Live
@@ -392,11 +396,26 @@ const Dashboard = () => {
                   {msg.type === 'user' ? (
                     <p className="mt-2">{msg.text}</p>
                   ) : (
-                    <ul className="mt-3 list-disc pl-5 text-slate-100 space-y-1">
-                      {msg.text.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
+                    <div className="mt-3 text-slate-100">
+                      {Array.isArray(msg.text) ? (
+                        <ul className="list-disc pl-5 space-y-1">
+                          {msg.text.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : msg.content ? (
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-[#FF6000] bg-[#FF6000]/10 px-2 py-1 rounded">
+                              {msg.content.difficulty}
+                            </span>
+                            <span className="text-xs text-slate-400">{msg.content.topic}</span>
+                          </div>
+                          <p className="text-sm font-semibold text-white">{msg.content.question}</p>
+                          <p className="text-sm text-slate-300 mt-2">{msg.content.answer}</p>
+                        </div>
+                      ) : null}
+                    </div>
                   )}
                 </div>
               ))}
@@ -418,11 +437,11 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-[#6C5BD4]/10 hover-lift">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-[#6C5BD4]/10 hover:shadow-[#6C5BD4]/20 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400 font-medium">Progress</p>
-                <h3 className="text-lg font-bold text-white font-clash mt-1">This week</h3>
+                <h3 className="text-lg font-bold text-white mt-1">This week</h3>
               </div>
               <span className="rounded-2xl border border-emerald-300/40 bg-emerald-300/15 px-4 py-1.5 text-xs font-bold text-emerald-100 shadow-lg shadow-emerald-400/20">
                 +18% vs last week
@@ -430,15 +449,15 @@ const Dashboard = () => {
             </div>
             <div className="mt-6 grid grid-cols-3 gap-4 text-center">
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-300 hover:bg-white/10 hover:scale-105">
-                <p className="text-3xl font-bold text-white font-clash">6h</p>
+                <p className="text-3xl font-bold text-white">6h</p>
                 <p className="text-xs text-slate-400 mt-2 font-medium">Deep work</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-300 hover:bg-white/10 hover:scale-105">
-                <p className="text-3xl font-bold text-white font-clash">3</p>
+                <p className="text-3xl font-bold text-white">3</p>
                 <p className="text-xs text-slate-400 mt-2 font-medium">Completed modules</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-300 hover:bg-white/10 hover:scale-105">
-                <p className="text-3xl font-bold text-white font-clash">92%</p>
+                <p className="text-3xl font-bold text-white">92%</p>
                 <p className="text-xs text-slate-400 mt-2 font-medium">Quiz avg.</p>
               </div>
             </div>
@@ -452,4 +471,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard
-
